@@ -34,7 +34,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "https://interview-platform-frontend-sstl.vercel.app/",
   credentials: true,
 };
 
