@@ -80,7 +80,7 @@ export const getResume = async (req, res) => {
     if (!user || !user.resume.filePath) {
       return res.status(404).json({ error: "Resume not found" });
     }
-    res.json({ resumeUrl: `http://localhost:8000/${user.resume.filePath}` });
+    res.json({ resumeUrl: `https://interview-platform-backend-xp3r.onrender.com/${user.resume.filePath}` });
   } catch (error) {
     res.status(500).json({ error: "Error fetching resume" });
   }
