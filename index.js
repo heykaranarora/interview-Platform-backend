@@ -35,6 +35,7 @@ app.use(cookieParser());
 
 const allowedOrigins = [
  "http://192.168.1.6:3000",
+ "http://localhost:3000",
   "https://interview-platform-frontend-kyea.vercel.app"
 ];
 
