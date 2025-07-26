@@ -33,7 +33,11 @@ export const generateMCQQuestions = async (req, res) => {
     if (!extractedJson) throw new Error("Failed to extract valid JSON from Gemini API response.");
 
     const mcqQuestions = JSON.parse(extractedJson[0]);
+    if (!Array.isArray(mcqQuestions) || mcqQuestions.length !== 5) {
+      return res.status(400).json({ message: "Invalid response format from Gemini API." });
+    }
 
+    
     return res.status(200).json({ questions: mcqQuestions });
   } catch (error) {
     console.error("Error fetching MCQs:", error);
