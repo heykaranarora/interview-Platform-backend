@@ -33,12 +33,30 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+const allowedOrigins = [
+ "http://192.168.1.6:3000",
+ "http://localhost:3000",
+  "https://interview-platform-frontend-kyea.vercel.app"
+];
+
 const corsOptions = {
   origin: "http://localhost:3000",
   credentials: true,
 };
 
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps or curl)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true // important for cookies
+}));
+//app.use(cors(corsOptions));
 
 const PORT = process.env.PORT || 8000;
 
